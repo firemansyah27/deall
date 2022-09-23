@@ -19,6 +19,7 @@
         - GET    : http://localhost:8000/api/users/
         - POST   : http://localhost:8000/api/users/register/
         - POST   : http://localhost:8000/api/users/me/
+        - GET    : http://localhost:8000/api/users/:id
         - PUT    : http://localhost:8000/api/users/:id
         - DELETE : http://localhost:8000/api/users/:id
 ```

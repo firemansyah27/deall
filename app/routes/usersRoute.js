@@ -14,6 +14,7 @@ module.exports = app => {
     router.get("/", verifyToken.verify, permission.isAdmin, users.findAll);
     router.post("/register/", verifyToken.verify, permission.isAdmin, users.register);
     router.get("/me/", verifyToken.verify, users.me);
+    router.get("/:id/", verifyToken.verify, permission.isAdmin, users.findOne);
     router.put("/:id/", verifyToken.verify, permission.isAdmin, users.update);
     router.delete("/:id/", verifyToken.verify, permission.isAdmin, users.delete);
   

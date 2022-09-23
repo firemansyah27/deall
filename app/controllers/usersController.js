@@ -124,6 +124,7 @@ exports.findAll = async (req, res) => {
         });
 };
 
+
 exports.update = async (req, res) => {
     if (!req.body) {
         return res.status(400).send({
@@ -147,6 +148,22 @@ exports.update = async (req, res) => {
             res.status(500).send({
                 message: "Error updating User with id=" + id
             });
+        });
+};
+
+exports.findOne = async (req, res) => {
+    const id = req.params.id;
+
+    await Users.findById(id)
+        .then(data => {
+        if (data.length == 0)
+            res.status(404).send({ message: "Not found User with id " + id });
+        else res.send(data);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({ message: "Error retrieving User with id=" + id });
         });
 };
 

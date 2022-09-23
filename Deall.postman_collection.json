@@ -106,7 +106,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmQ5YjZmNGZmZTI5YjlkZGNjN2I3ZSIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaXNfYWRtaW4iOnRydWUsImlhdCI6MTY2MzkzMzQ3NiwiZXhwIjoxNjY0MDE5ODc2fQ.GJx_t89m-S1Leu84uLoTMgv9XZkr4DfjGXRG18kvRqE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmQ5YjZmNGZmZTI5YjlkZGNjN2I3ZSIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaXNfYWRtaW4iOnRydWUsImlhdCI6MTY2MzkzODQ0NCwiZXhwIjoxNjY0MDI0ODQ0fQ.CsXnkCfpUm0gj9FllP_CJ4d1KFdEHqN82IATxt7G1vc",
 							"type": "string"
 						}
 					]
@@ -161,7 +161,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/users/632d8a272e5eaef332a26a55/",
+					"raw": "http://localhost:8000/api/users/replace_by_user_id/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -170,7 +170,7 @@
 					"path": [
 						"api",
 						"users",
-						"632d8a272e5eaef332a26a55",
+						"replace_by_user_id",
 						""
 					]
 				}
@@ -235,6 +235,38 @@
 						"api",
 						"users",
 						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET USER DETAIL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmQ5YjZmNGZmZTI5YjlkZGNjN2I3ZSIsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaXNfYWRtaW4iOnRydWUsImlhdCI6MTY2MzkzODQ0NCwiZXhwIjoxNjY0MDI0ODQ0fQ.CsXnkCfpUm0gj9FllP_CJ4d1KFdEHqN82IATxt7G1vc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users/632d8a272e5eaef332a26a55/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"632d8a272e5eaef332a26a55",
 						""
 					]
 				}
