@@ -23,3 +23,5 @@
         - PUT    : http://localhost:8000/api/users/:id
         - DELETE : http://localhost:8000/api/users/:id
 ```
+## API DIAGRAM
+API Diagram Flow : flow_api.jpeg
