@@ -1,0 +1,114 @@
+@startuml(id=SystemContext)
+title Flow API Login and CRUD
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotypes
+skinparam Person<<USER>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052E56
+}
+skinparam rectangle<<User>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<UserList>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<RegisterUser>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<MeUser>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<UserDetail>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<UpdateUser>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<DeleteUser>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<Auth>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam rectangle<<RefreshToken>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0B4884
+}
+skinparam database<<DB>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2E6295
+}
+
+database "==Database\n<size:10>[Component: MongoDB ]</size>\n\nStores Users data " <<DB>> as DB
+rectangle "==USER\n<size:10>(Client)</size>\n [EMAIL, PASSWORD] / \n [ACCESS TOKEN] /\n [REFRESH TOKEN]" <<User>> as User
+
+
+
+rectangle "Deall Server" {
+  rectangle "Authentication" {
+    rectangle "==Authentication/\n<size:10>[POST: /api/users/auth/]</size>\n Create and Get Access Token" <<Auth>> as Auth
+    rectangle "==Refresh Token\n<size:10>[POST: /api/users/refresh-token/]</size>\n Refresh Expired Access Token" <<RefreshToken>> as RefreshToken
+  }
+
+  rectangle "Users API" {
+    rectangle "==Get User List\n<size:10>[GET: /api/users/]</size>\n Get all list of users" <<UserList>> as UserList
+    rectangle "==Register \n<size:10>[POST: /api/users/register/]</size>\n Create New User" <<RegisterUser>> as RegisterUser
+    rectangle "==Me \n<size:10>[POST: /api/users/me/]</size>\n Get detail of current login user" <<MeUser>> as MeUser
+    rectangle "==Get User Detail \n<size:10>[PUT: /api/users/:id]</size>\n Get the detail of user" <<UserDetail>> as UserDetail
+    rectangle "==Update User \n<size:10>[PUT: /api/users/:id]</size>\n Update specific user" <<UpdateUser>> as UpdateUser
+    rectangle "==Delete User \n<size:10>[POST: /api/users/:id]</size>\n Delete specific user" <<DeleteUser>> as DeleteUser
+  }
+}
+
+
+
+
+User <.[#707070].> Auth : "Send Authentication Request by [EMAIL, PASSWORD] and Get Access Token."
+User <.[#707070].> RefreshToken : "Send Authentication Request by [REFRESH TOKEN] and Get New Access Token."
+
+Auth <.[#707070].> DB : "Update user refresh token"
+RefreshToken <.[#707070].> DB : "Get and Verify Refresh Token"
+
+
+User <.[#707070].> UserList : "Send Request Get User List by [ACCESS TOKEN] and Get Response."
+User <.[#707070].> RegisterUser : "Send Request Get User List by [ACCESS TOKEN] and Get Response."
+User <.[#707070].> MeUser : "Send Request Current User Detail by [ACCESS TOKEN] and Get Response."
+User <.[#707070].> UserDetail : "Send Request Get Specific User Detail by [ACCESS TOKEN] and Get Response."
+User <.[#707070].> UpdateUser : "Send Request Update User Data by [ACCESS TOKEN] and Get Response."
+User <.[#707070].> DeleteUser : "Send Request Delete User Data by [ACCESS TOKEN] and Get Response."
+
+UserList <.[#707070].> DB : "Get List of User Data"
+RegisterUser <.[#707070].> DB : "Create New User Data"
+MeUser <.[#707070].> DB : "Get User Data"
+UserDetail <.[#707070].> DB : "Get User Data"
+UpdateUser <.[#707070].> DB : "Update User Data"
+DeleteUser <.[#707070].> DB : "Delete User Data"
+
+
+@enduml
