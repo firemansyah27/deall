@@ -1,0 +1,24 @@
+version: '3'
+
+volumes:
+  local_mongo_data: {}
+
+services:
+  server:
+    build: ./
+    command: nodemon -L server.js
+    environment:
+      - ACCESS_TOKEN_SECRET="alkjdf82hjkfwe92hkjfwn2u38qjkdfascb98243sd"
+      - REFRESH_TOKEN_SECRET="asdlfj2345890sdfklj20958j0yucgrfu92239riu"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - mongo_db
+  mongo_db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - local_mongo_data:/var/lib/mongo/data:Z
