@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: server:latest
+        image: deall/server:latest
         resources:
           requests:
             cpu: 100m
